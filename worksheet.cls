@@ -1,10 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{worksheet}[12/10/2020 clean worksheet template]
+\ProvidesClass{worksheet}[6/21/2021 clean worksheet template]
 \LoadClass[letterpaper,11pt]{book}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % In-class Worksheet class file
-% Ver 4.0 (5/27/2021)
+% Ver 5.0 (6/21/2021)
 %
 % Author: Subhadip Chowdhury
 %
