@@ -1,0 +1,99 @@
+\chapter{How to use this Worksheet}
+
+\section{First Section}
+
+Uses kpfonts.
+
+\begin{defn}[Definition Title]{label_defn1}
+	A definition. The title is optional.
+\end{defn}
+
+Typewriter font is written as {\tt Computer Code}.
+
+\begin{exmpl}[Title]{label_exmpl}
+	\begin{itemize}
+		\item First example 
+		\begin{itemize}
+			\item  Note $1$
+			\item  Note $2$
+		\end{itemize}
+		\item Second example
+	\end{itemize}
+\end{exmpl}    
+
+
+
+Some other text.
+
+\begin{theo}[Theorem Title]{label_thm}
+	A Theorem that uses objects defined in \cref{label_defn1}. Title is optional. 
+	\[\dint_a^b u v' \dx = [u(x)v(x)] \eval_a^b - \dint_a^b u'(x) v(x) \dx\]
+\end{theo}
+
+
+\begin{prf}{label_thm}
+	Proof text ends in qed symbol. Must be supplied the label of the theorem.
+\end{prf}
+
+
+\question[Automatic Question numbering]{\label{question_label}
+	\begin{enumerate}
+		\item Greek letters and uppercase math letters are always upright. Such as \label{step_a}
+		\begin{enumerate}
+			\item  $\alpha x^2 +\beta$ \label{substep_a_i} 
+			\item  $y =mx+ C \in \R$ 
+		\end{enumerate}
+		
+		\item Do the  following tasks after \ref{step_a}.
+		\begin{tasks}(3)
+			\task first do \ref{substep_a_i}.
+			\task ??    
+			\task Profit
+		\end{tasks}
+\end{enumerate}}
+
+
+\begin{solution}
+	Solution to the exercise. Uncomment the ``solutionfalse'' flag to make solutions invisible.
+\end{solution}
+
+
+\begin{note}[Fun Fact:]
+	This is a note with a custom title. Default is `Note:'.
+\end{note}
+
+
+
+\section{Second Section}
+
+\begin{axiom}{label_axiom}
+	This is an axiom.
+\end{axiom}
+
+
+
+\begin{digression}
+	A digression into tangentially related topics.
+\end{digression}
+
+
+
+\subsection{Case 1: First subsection}
+When  \cref{label_exmpl} is true.
+\begin{warning}[A Warning:] %default is Warning:
+	\lipsum[1][1-2]
+\end{warning}
+
+\subsection{Case 2: Second subsection}
+Do \cref{question_label} first.
+
+
+
+\begin{code}[Code:]
+	\begin{verbatim}
+		$ chmod +x hello.py
+		$ ./hello.py
+		
+		Hello World!
+	\end{verbatim}
+\end{code}

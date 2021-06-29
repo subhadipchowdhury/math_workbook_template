@@ -1,0 +1,39 @@
+\documentclass{worksheet}
+
+%\solutionfalse
+\solutiontrue
+
+\imagepath{images/escher.jpg}
+\department{College Name}
+\coursenumber{Subject 1234}
+\coursename{Course title}
+\coursesemester{Summer 2077}
+\instructorname{Firstname Lastname}
+
+\addbibresource{references.bib}
+
+\begin{document}
+	
+	\maketitle
+	
+	
+	\frontmatter
+
+	\tableofcontents
+	
+	\include{introduction}
+	
+
+	\mainmatter
+	
+	\include{chapter1}
+
+	\include{chapter2}
+
+	\backmatter
+    
+    \nocite{*}
+	\printbibliography[title={Resources},heading=bibintoc]
+	
+\end{document}	
+

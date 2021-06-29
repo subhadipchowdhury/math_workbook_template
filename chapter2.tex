@@ -1,0 +1,90 @@
+\chapter{How to write in \LaTeX}
+
+\section{Important Stuff}
+
+This section contains some important information about writing in \LaTeX.
+
+\subsection{Notes about Quotes and Internal references}
+
+When you quote something in \LaTeX, you have to do it like ``this.''
+If you do it like ''this,'' one of your quotation marks will be backwards.
+
+Another nice thing about using \LaTeX \ is that you can reference 
+equations and figures once you have labeled them. For example,
+\cref{fig:universe} is a picture of the universe! You can also 
+reference equations, sections, lemmas, theorems, etc. See the
+examples in \cref{sec:moremath}.
+
+
+
+\subsection{More Math Stuff}
+\label{sec:moremath}
+
+Mathematical expressions, like $x^{2} + 3$, are easy to create in \LaTeX.
+It is also easy to have a formula written on a separate line, like \[x^{2} + 3 = 0.\]
+
+
+
+Numbered equations are easy too!
+\begin{equation}
+	\label{eq:simpleequation}
+	x^{5} - 9x^{4} = \sin 3.
+\end{equation}
+You can also refer to previous equations.
+The formula
+\begin{equation}
+	x = \frac{-b \pm \sqrt{b^{2} - 4ac}}{2a} \label{yourlabel}
+\end{equation}
+is the quadratic formula.
+You can use \cref{yourlabel} to solve quadratic equations.
+
+% Notice that you can also place equations and formulas between the commands 
+% ''\begin{equation}'' and ''\end{equation}''. No dollar signs are necessary in this case. 
+
+% You can also create a label for the equation using the command ''\label''. You can 
+% refer back to the equation using the ''\ref'' command. Notice how LaTeX 
+% automatically takes care of the numbering. When you use the ''\ref'' command, you 
+% will need to run LaTeX on the source file twice. This is necessary so that LaTeX 
+% can keep track of the numbering. (Note that LaTeX will complain a little bit the first 
+% time you run the source file through. This is not serious.)
+
+Here is a formula with some simple mathematical operations:
+\[5 \times 3 + 4 \div 2 = 2 \cdot 10 - 3 < 100.\]
+Another simple formula:
+\[x^{2} \geq 0.\]		% The command ''\geq'' is ''greater than or equal'' and 
+% ''\leq'' is ''less than or equal''.				
+This formula is true for $x \in \mathbb{R}$.	% The command ''\mathbb'' specifies 
+% a certain type of math font. There are 
+% also the ''\mathbf'' (bold) and the 
+% ''\mathcal'' (calligraphic) commands, 
+% among others, for specifying font styles 
+% in math formulas.
+One more simple formula:
+\[0 \neq \frac{\pi}{2}.\]
+Some simple trigonometry:
+\[\sin(2x) = 2 \sin x \cos x.\]
+Some simple logarithms:
+\[\log(x) = \frac{\ln x}{\ln 10}.\]
+
+
+And now some Greek letters:
+\[\alpha + \beta = \gamma.\]
+A formula involving set notation:
+\[A \cup (B \cap C) = (A \cup B) \cap (A \cup C).\]
+The derivative:
+\[\lim_{h \rightarrow 0}\frac{f(x + h) - f(x)}{h} = f'(x).\]
+The Riemann sum
+\[\sum_{i = 1}^{n}f(x_{i})\Delta x\]
+approximates the integral
+\[\int_{a}^{b}f(x)\;dx.\]		% The characters ``\;'' just place some additional space 
+% in the formula.
+Finally, an infinite series:
+\[1, \frac{1}{2}, \frac{1}{4}, \ldots.\] %Also try \cdots
+
+
+
+
+
+\section{Conclusion}
+``I always thought something was fundamentally wrong with the universe.'' \cite{adams1995hitchhiker}
+
