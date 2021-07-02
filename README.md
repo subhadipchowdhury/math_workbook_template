@@ -1,6 +1,6 @@
-# Clean Worksheet Template
+# Worksheet Template
 
-A versatile clean template for writing Math notes, worksheets and homework assignments.  
+A versatile template for writing Math notes, worksheets and homework assignments.  
 
 This version uses the book class and chapters to create longer notes.
 
