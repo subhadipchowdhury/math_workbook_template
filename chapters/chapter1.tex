@@ -8,7 +8,7 @@ Uses kpfonts.
 	A definition. The title is optional.
 \end{defn}
 
-Typewriter font is written as {\tt Computer Code}.
+
 
 \begin{exmpl}[Title]{label_exmpl}
 	\begin{itemize}
@@ -36,7 +36,7 @@ Some other text.
 \end{prf}
 
 
-\question[Automatic Question numbering]{\label{question_label}
+\question[Questions have their own counters]{\label{question_label}
 	\begin{enumerate}
 		\item Greek letters and uppercase math letters are always upright. Such as \label{step_a}
 		\begin{enumerate}
@@ -70,7 +70,13 @@ Some other text.
 	This is an axiom.
 \end{axiom}
 
+\begin{prop}{label_proposition}
+	This is a proposition.
+\end{prop}
 
+\begin{claim}{label_claim}
+	This is a claim.
+\end{claim}
 
 \begin{digression}
 	A digression into tangentially related topics.
@@ -87,7 +93,7 @@ When  \cref{label_exmpl} is true.
 \subsection{Case 2: Second subsection}
 Do \cref{question_label} first.
 
-
+Computer Code is written as {\tt Typewriter font}.
 
 \begin{code}[Code:]
 	\begin{verbatim}

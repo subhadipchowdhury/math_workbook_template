@@ -1,10 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{worksheet}[7/2/2021 worksheet template]
+\ProvidesClass{worksheet}[2021/30/11 Math Worksheet Template]
 \LoadClass[letterpaper,11pt]{book}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % In-class Worksheet class file
-% Ver 6.0 (7/2/2021)
+% Ver 7.0 (11/30/2021)
 %
 % Author: Subhadip Chowdhury
 %
@@ -20,6 +20,9 @@
 %===============FONT=====================
 \RequirePackage[frenchstyle,narrowiints,nofligatures,partialup,fullintlimits,fullsumlimits,largesmallcaps,mathcalasscript]{kpfonts}
 
+%Title Font
+\RequirePackage{libris}
+\renewcommand{\sfdefault}{yly}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -138,9 +141,9 @@
 
 %=== CHAPTER ===
 
-\titleformat{\chapter}[block]{\centering}{\huge\bfseries\scshape\color{orange} \chaptername~\thechapter\;{\color{lightgray}\vrule width 2pt} {#1}}{0pt}{}[\chapterline{orange}{88}\thispagestyle{empty}]
+\titleformat{\chapter}[block]{\centering}{\huge\bfseries\sffamily\scshape\color{orange} \chaptername~\thechapter\;{\color{lightgray}\vrule width 2pt} {#1}}{0pt}{}[\chapterline{orange}{88}\thispagestyle{empty}]
 
-\titleformat{name=\chapter, numberless}{\centering}{\huge\bfseries\scshape\color{orange} #1}{0pt}{}[\chapterline{orange}{88}\thispagestyle{empty}]
+\titleformat{name=\chapter, numberless}{\centering}{\huge\bfseries\sffamily\scshape\color{orange} #1}{0pt}{}[\chapterline{orange}{88}\thispagestyle{empty}]
 
 
 \titlespacing{\chapter}{0pt}{-20pt}{1.3\baselineskip}
@@ -148,17 +151,21 @@
 %=== SECTION ===
 
 \fboxrule0.5pt\fboxsep3pt
-\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesection{\arabic{chapter}.\arabic{section}}
 
-\titleformat{\section}{\normalfont\Large}{}{0pt}{\colorbox{orange!50}{\S\thesection. \textbf{#1}}}
+\titleformat{\section}{\sffamily\Large}{}{0pt}{\colorbox{orange!50}{\S\thesection~\textbf{#1}}}
 
 
 
 %=== SUBSECTION ===
 
-\titleformat{\subsection}{\centering\Large\bfseries\scshape}{}{0em}{\xrfill[0em]{1pt}\,\color{orange}\S\thesubsection. #1\,\xrfill[0em]{1pt}}
+% Centering Option
+% \titleformat{\subsection}{\centering\Large\bfseries\scshape}{}{0em}{\xrfill[0em]{1pt}\,\color{orange}\S\thesubsection. #1\,\xrfill[0em]{1pt}}
+
+\titleformat{\subsection}{\large\sffamily}{}{0em}{\colorbox{orange!50}{\thesubsection~\textbf{#1}}}
 
 \titlespacing{\subsection}{0pt}{5pt plus 4pt minus 2pt}{10pt plus 2pt minus 2pt}
+
 
 %====QUESTIONS =======
 
@@ -673,12 +680,14 @@
 	\begin{mdframed}[style=note]
 		\noindent{\textbf{#1}} \BODY \end{mdframed}}
 
-
-%=====================================
-%=====================================
 %=====================================
 %=====================================
 
+%=====================================
+%=====================================
+
+%=====================================
+%=====================================
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -686,27 +695,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Title Page %%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\maketitle}{
 	\begin{center}
-		\includegraphics[width=0.9\textwidth]{\@imagepath}\par\vspace{1cm}
-		{\scshape\LARGE \@department \par}
+		{\includegraphics[width=0.9\textwidth]{\@coverimage}\par}
 		\vspace{1cm}
-		{\scshape\Large \@coursenumber Lecture notes\par}
-		\vspace{1.5cm}
-		{\huge\bfseries \@coursename \par}
+		{\Huge\bfseries \@coursename \par}
 		\vspace{2cm}
-		{\Large\itshape \@instructorname \par}
+		{\scshape\huge \@coursenumber~Lecture notes\par}
+		\vspace{1.5cm}
+		
+		{\Large \@instructorname, PhD \par}
 		\vfill
 		
 		% Bottom of the page
-		{\large \@coursesemester\par}
+		{\includegraphics[width=0.5\textwidth]{\@departmentlogo}\par}
+		\vspace{1cm}
+		{\Large \@coursesemester\par}
 	\end{center}
 	\thispagestyle{empty}
 }
 
-\newcommand{\imagepath}[1]{
-	\gdef\@imagepath{#1}}
+\newcommand{\coverimage}[1]{
+	\gdef\@coverimage{#1}}
 
 \newcommand{\department}[1]{
 	\gdef\@department{#1}}
+	
+\newcommand{\departmentlogo}[1]{
+	\gdef\@departmentlogo{#1}}
 
 \newcommand{\coursenumber}[1]{
 	\gdef\@coursenumber{#1}}
@@ -719,6 +733,7 @@
 
 \newcommand{\instructorname}[1]{
 	\gdef\@instructorname{#1}}
+
 
 %%%%%%% Frontmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Special front matter that appears before the table of contents
@@ -755,26 +770,26 @@
 
 %%%%%% Header and Footer %%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{fancyhdr}
-\pagestyle{fancy}
 
+\pagestyle{fancy}
 \fancyhf{}
-\lhead{%
-		\begin{tikzpicture}[overlay,remember picture]
-			\node[draw, fill=orange!50, text=black, draw=black,
-			rounded rectangle, 
-			minimum width=3cm,minimum height=2em,
-			align = right, text width=6.5em,
-			anchor=west] at ($ (current page.north west) + (-1.5cm, - 1in - \voffset - \topmargin - \headheight )  $)
-			{\large\bfseries{\S\thechapter.\thesection~}};
-		\end{tikzpicture}
-		\bf \@coursenumber
-}
+\lhead{\bf \@coursenumber}
 \chead{\bf \textendash\;\thepage\;\textendash}
 \rhead{\bf \@instructorname}
 \lfoot{}
 \rfoot{}
 \cfoot{}
-
+% \lhead{%
+% 		\begin{tikzpicture}[overlay,remember picture]
+% 			\node[draw, fill=orange!50, text=black, draw=black,
+% 			rounded rectangle, 
+% 			minimum width=3cm,minimum height=2em,
+% 			align = right, text width=6.5em,
+% 			anchor=west] at ($ (current page.north west) + (-1.5cm, - 1in - \voffset - \topmargin - \headheight )  $)
+% 			{\large\bfseries{\S\thechapter.\thesection~}};
+% 		\end{tikzpicture}
+% 		\bf \@coursenumber
+% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

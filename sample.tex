@@ -3,14 +3,22 @@
 %\solutionfalse
 \solutiontrue
 
-\imagepath{images/escher.jpg}
-\department{College Name}
+\coverimage{images/escher.jpg}
+\departmentlogo{example-image-a}
 \coursenumber{Subject 1234}
 \coursename{Course title}
 \coursesemester{Summer 2077}
 \instructorname{Firstname Lastname}
 
 \addbibresource{references.bib}
+
+% \epigraph{
+
+
+% }
+
+
+
 
 \begin{document}
 	
@@ -21,16 +29,52 @@
 
 	\tableofcontents
 	
-	\include{introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+    
+    \chapter*{Acknowledgement}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	
+	\include{chapters/introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
 	\mainmatter
 	
-	\include{chapter1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	
-	\include{chapter2}
+	\include{chapters/chapter1}
+	
+	\include{chapters/chapter2}
 
 	\backmatter
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+	\appendix
+	\addcontentsline{toc}{chapter}{Appendices}
+	\chapter*{Appendices}
+	\renewcommand{\thesection}{\Alph{section}}
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \include{appendices/appendix1}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \addcontentsline{toc}{chapter}{Exercises}
+	\chapter*{Exercises}
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\setcounter{question}{1000}
+	\include{homeworks/weeklyexercises}
+
+   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
     
     \nocite{*}
 	\printbibliography[title={Resources},heading=bibintoc]
