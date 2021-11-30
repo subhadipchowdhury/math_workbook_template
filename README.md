@@ -1,4 +1,4 @@
-# Worksheet Template
+# Math Worksheet Template
 
 A versatile template for writing Math notes, worksheets and homework assignments.  
 
