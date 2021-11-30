@@ -856,6 +856,3 @@
 \DeclareMathOperator\Rng{Rng}
 \DeclareMathOperator\Codom{Codom}
 
-
-
-
