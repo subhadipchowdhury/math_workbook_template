@@ -1,4 +1,4 @@
-\chapter{How to use this Worksheet}
+\chapter{How to use this template}
 
 \section{First Section}
 
@@ -36,7 +36,7 @@ Some other text.
 \end{prf}
 
 
-\question[Questions have their own counters]{\label{question_label}
+\begin{exercise}[Questions have their own counters.]\label{question_label}
 	\begin{enumerate}
 		\item Greek letters and uppercase math letters are always upright. Such as \label{step_a}
 		\begin{enumerate}
@@ -50,8 +50,8 @@ Some other text.
 			\task ??    
 			\task Profit
 		\end{tasks}
-\end{enumerate}}
-
+\end{enumerate}
+\end{exercise}
 
 \begin{solution}
 	Solution to the exercise. Uncomment the ``solutionfalse'' flag to make solutions invisible.
@@ -95,11 +95,24 @@ Do \cref{question_label} first.
 
 Computer Code is written as {\tt Typewriter font}.
 
-\begin{code}[Code:]
-	\begin{verbatim}
-		$ chmod +x hello.py
-		$ ./hello.py
-		
-		Hello World!
-	\end{verbatim}
+\begin{code}{Python}
+    def rk4(f,x0,t0,tmax,dt):
+        t = # build the time array
+        x = # initialize an empty array for the x values
+        x[0] = # build the initial condition
+        # On the next line: be careful about how far you're looping
+        for i in range( ??? ):
+        # The interesting part of the code goes here.
+        # Start from t[i] and x[i]. Then Define k1, k2, k3, k4 
+        # and use them to find x[i+1]
+        return t, x
+        
+    f = lambda t, x: # the definition of the function goes here
+    
+    x0 = # initial condition
+    t0 = 0
+    tmax = # your choice
+    dt = # pick something reasonable
+    t, x = rk4( ??? , ??? , ??? , ??? , ??? )
+    # plot t vs. x
 \end{code}

@@ -1,10 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{worksheet}[2021/30/11 Math Worksheet Template]
+\ProvidesClass{workbook}[2022/18/05 Math Workbook Template]
+
+\newif\ifworksheet
+\DeclareOption{worksheet}{\worksheettrue}
+
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
+\ProcessOptions\relax
+
 \LoadClass[letterpaper,11pt]{book}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% In-class Worksheet class file
-% Ver 7.0 (11/30/2021)
+% Course Workbook class file
+% Ver 8.0 (5/18/2022)
 %
 % Author: Subhadip Chowdhury
 %
@@ -24,9 +31,14 @@
 \RequirePackage{libris}
 \renewcommand{\sfdefault}{yly}
 
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %==============PACKAGES==================
 
@@ -88,8 +100,6 @@
 	\par\nointerlineskip \vspace{.1\baselineskip}
 }
 
-
-
 %============= COLORS ===============
 
 \newcommand{\blue}{\color{blue!80!black}}
@@ -125,14 +135,43 @@
 %============== Bibliography ========
 \RequirePackage[sorting=none, backend=biber, style=numeric]{biblatex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 
 
 
-%==========TITLE FORMATTING ==========
+%===== MATH ==========
+
+\RequirePackage{amsmath, mathtools}
+\RequirePackage{amsthm, amssymb}
+
+
+%========= Tables and Lists ==========
+\RequirePackage{multicol,array}
+\usepackage{booktabs} % This makes tables look a bit more professional!
+
+\RequirePackage{enumitem}
+\setlist[enumerate]{leftmargin=*, align=left}
+% \setlist[enumerate,1]{label = \arabic*.,ref   = \arabic*}
+\setlist[enumerate,1]{label = (\alph*), ref = \thequestion.\alph*}
+\setlist[enumerate,2]{label = (\roman*), ref= \theenumii.\roman*}
+\setlist[itemize]{leftmargin=*, align=left}
+\setlist[itemize,2]{label=$\blacktriangleright$}
+\setlist[itemize,1]{label=$\bullet$}
+
+\RequirePackage{tasks}
+\settasks{label=(\roman*), item-indent  = 2em , label-width  = 2em , label-offset = 0pt}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%========== TITLE FORMATTING ==========
 
 
 \RequirePackage[explicit,toctitles,center,pagestyles]{titlesec}
@@ -159,48 +198,27 @@
 
 %=== SUBSECTION ===
 
-% Centering Option
-% \titleformat{\subsection}{\centering\Large\bfseries\scshape}{}{0em}{\xrfill[0em]{1pt}\,\color{orange}\S\thesubsection. #1\,\xrfill[0em]{1pt}}
-
 \titleformat{\subsection}{\large\sffamily}{}{0em}{\colorbox{orange!50}{\thesubsection~\textbf{#1}}}
 
-\titlespacing{\subsection}{0pt}{5pt plus 4pt minus 2pt}{10pt plus 2pt minus 2pt}
+% \titlespacing{\subsection}{0pt}{5pt plus 4pt minus 2pt}{10pt plus 2pt minus 2pt}
+
+%=== SUBSUBSECTION ===
+% \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before>}[<after>]
+
+\titleformat{\subsubsection}{\centering\sffamily}{}{0em}{\boxed{\textbf{#1}}}
+
+\titlespacing{\subsubsection}{3pc}{*3}{*2}[3pc]
 
 
-%====QUESTIONS =======
 
-\newcounter{question}
-\newcommand{\question}[2][]{%
-	\refstepcounter{question}%
-	{\paragraph{}\em\large \hspace{-2em}$\blacksquare$~\othertailQ uestion~\thequestion.\hfill\fbox{#1}}\\[0.5em] {{\itshape #2}}}
-\crefname{question}{question}{questions}
 
-%=====================================
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%===== MATH ==========
 
-\RequirePackage{amsmath, mathtools}
-\RequirePackage{amsthm, amssymb}
-
-
-%========= Tables and Lists ==========
-\RequirePackage{multicol,array}
-\usepackage{booktabs} % This makes tables look a bit more professional!
-
-\RequirePackage{enumitem}
-\setlist[enumerate]{leftmargin=*, align=left}
-% \setlist[enumerate,1]{label = \arabic*.,ref   = \arabic*}
-\setlist[enumerate,1]{label = (\alph*), ref = \thequestion.\alph*}
-\setlist[enumerate,2]{label = (\roman*), ref= \theenumii.\roman*}
-\setlist[itemize]{leftmargin=*, align=left}
-\setlist[itemize,2]{label=$\blacktriangleright$}
-\setlist[itemize,1]{label=$\bullet$}
-
-\RequirePackage{tasks}
-\settasks{label=(\roman*), item-indent  = 2em , label-width  = 2em , label-offset = 0pt}
 
 
 %============== Boxes ===============
@@ -210,10 +228,40 @@
 \RequirePackage{environ} 
 \RequirePackage[framemethod=TikZ]{mdframed}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%
-%Proof %%%%%%%%%
+% Exercise %%%%%
+%%%%%%%%%%%%%%%%
+
+\newcounter{question}
+\NewEnviron{exercise}[1][]
+{
+	\refstepcounter{question}%
+	{\paragraph{}\em\large \hspace{-2em}$\blacksquare$~\othertailQ uestion~\thequestion.\hfill\fbox{#1}}\\[0.5em] {{\itshape\BODY}}
+}
+
+\crefname{question}{question}{questions}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Solution %%%%%%%%% Make Solution Invisible Based on Flag
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Usage:
+% \begin{solution}
+%	solution contents
+% \end{solution}
+
+
+\newif\ifsolution
+
+\NewEnviron{solution}{\ifsolution\begin{proof}[Solution]\blue\BODY\end{proof}\fi}{} 
+\renewcommand\qedsymbol{$\blacksquare$}  
+
+
+%%%%%%%%%%%%%%%%
+%Proof %%%%%%%%% Doesn't have a counter. Needs label of theorem or proposition etc.
 %%%%%%%%%%%%%%%%
 
 % Usage:
@@ -236,27 +284,10 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Solution %%%%%%%%% Make Solution Invisible Based on Flag
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Usage:
-% \begin{solution}
-%	solution contents
-% \end{solution}
-
-
-\newif\ifsolution
-
-\NewEnviron{solution}{\ifsolution\begin{proof}[Solution]\blue\BODY\end{proof}\fi}{} 
-\renewcommand\qedsymbol{$\blacksquare$}  
-
-
 
 %%%%%%%%%%% All environments get the same counter, except Questions. %%%%%%%%%%%%%
 
 \newcounter{counter} \setcounter{counter}{0}
-
 
 %%%%%%%%%%%%%%%%
 %Theorem %%%%%%
@@ -268,7 +299,7 @@
 % \end{thm}
 
 
-\newcommand{\thetheo}{\arabic{section}.\arabic{counter}}
+\newcommand{\thetheo}{\arabic{chapter}.\arabic{section}.\arabic{counter}}
 
 \NewEnviron{theo}[2][]
 {
@@ -312,7 +343,7 @@
 % \end{thm}
 
 
-\newcommand{\theaxiom}{\arabic{section}.\arabic{counter}}
+\newcommand{\theaxiom}{\arabic{chapter}.\arabic{section}.\arabic{counter}}
 
 \NewEnviron{axiom}[2][]
 {
@@ -357,7 +388,7 @@
 % \end{prop}
 
 
-\newcommand{\theprop}{\arabic{section}.\arabic{counter}}
+\newcommand{\theprop}{\arabic{chapter}.\arabic{section}.\arabic{counter}}
 
 \NewEnviron{prop}[2][]
 {
@@ -400,7 +431,7 @@
 % \end{claim}
 
 
-\newcommand{\theclaim}{\arabic{section}.\arabic{counter}}
+\newcommand{\theclaim}{\arabic{chapter}.\arabic{section}.\arabic{counter}}
 
 \NewEnviron{claim}[2][]
 {
@@ -444,7 +475,7 @@
 % \end{defn}
 
 
-\newcommand{\thedefn}{\arabic{section}.\arabic{counter}}
+\newcommand{\thedefn}{\arabic{chapter}.\arabic{section}.\arabic{counter}}
 
 \NewEnviron{defn}[2][]
 {
@@ -488,7 +519,7 @@
 % \end{exmpl}
 
 
-\newcommand{\theexmpl}{\arabic{section}.\arabic{counter}}
+\newcommand{\theexmpl}{\arabic{chapter}.\arabic{section}.\arabic{counter}}
 
 \NewEnviron{exmpl}[2][]
 {%
@@ -641,22 +672,48 @@
 %		Applications	Desktop	...
 % \end{code}
 
-\newenvironment{code}[1][Command Line:]{
-	\mdfsetup{
+
+\RequirePackage{listings}
+
+\lstnewenvironment{code}[1]
+{%
+    \mdfsetup{
 		leftmargin=10pt,
 		rightmargin=10pt,
 		innerleftmargin=15pt,
 		middlelinecolor=black!50,
-		middlelinewidth=2pt,
+		middlelinewidth=1pt,
 		frametitlerule=false,
 		backgroundcolor=black!5,
-		frametitle={#1},
+		frametitle={Code:},
 		frametitlefont={\normalfont\sffamily\color{white}\hspace{-1em}},
 		frametitlebackgroundcolor=black!50,
 		nobreak,
 	}
-	
-	\begin{mdframed}}{\end{mdframed}}
+    \mdframed%
+    \lstset{
+        mathescape,
+        % backgroundcolor=\color{black!5},   
+        commentstyle=\color{cyan},
+        keywordstyle=\color{magenta},
+        numberstyle=\tiny\color{black!50},
+        stringstyle=\color{magenta},
+        basicstyle=\ttfamily,
+        breakatwhitespace=false,         
+        breaklines=true,                 
+        keepspaces=true,      
+        language={#1},
+        numbers=none,                    
+        numbersep=5pt,                  
+        showspaces=false,                
+        showstringspaces=false,
+        showtabs=false,                  
+        tabsize=2
+  }%
+  } {\vspace{-0.75em}\endmdframed}
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%
 % Note 
@@ -681,18 +738,74 @@
 		\noindent{\textbf{#1}} \BODY \end{mdframed}}
 
 %=====================================
-%=====================================
 
-%=====================================
-%=====================================
 
-%=====================================
-%=====================================
 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title Page %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%==================Title Page for Worksheet=================== 
+
+\ifworksheet
+%%%%%%%%%%%%%%%%%%% Beginning of worksheet specific pages %%%%%%%%%%%%%%%%%
+
+\renewcommand{\maketitle}{
+    \begin{center}
+		{\maroon\Huge\scshape \@assignmentcourse}
+		\vspace{1em}
+		
+		{\scshape\huge \@assignmenttitle}
+	\end{center}
+	\vspace{-0.5em}
+	\noindent\hrulefill
+	
+	\vspace{-0.5em}
+	\noindent{\bfseries\large\@assignmentsemester\hspace{10.5em}\@instructorname\hfill \@assignmentduedate}
+	
+	\vspace{-1em}
+	\noindent\hrulefill
+	\thispagestyle{empty}
+}
+
+\newcommand{\assignmenttitle}[1]{
+  \gdef\@assignmenttitle{#1}}
+  
+
+\newcommand{\assignmentcourse}[1]{
+  \gdef\@assignmentcourse{#1}}
+  
+
+\newcommand{\assignmentsemester}[1]{
+  \gdef\@assignmentsemester{#1}}
+
+
+\newcommand{\assignmentduedate}[1]{
+  \gdef\@assignmentduedate{#1}}
+  
+
+\newcommand{\instructorname}[1]{
+  \gdef\@instructorname{#1}}
+
+
+
+
+%%%%%% End of worksheet specific pages %%%%%%%%%
+
+
+\else 
+%%%%%%%%%%%%%%%%%%% Beginning of Workbook specific pages %%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title Page for Workbook %%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\maketitle}{
 	\begin{center}
 		{\includegraphics[width=0.9\textwidth]{\@coverimage}\par}
@@ -768,12 +881,37 @@
 	\end{singlespace}
 }
 
+
+%%%%%% End of Workbook specific pages %%%%%%%%%
+
+\fi %End of ifworksheet
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %%%%%% Header and Footer %%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{fancyhdr}
 
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{\bf \@coursenumber}
+
+\ifworksheet
+    \lhead{\bf \@assignmentduedate}
+\else
+    \lhead{\bf \@coursenumber}
+\fi
 \chead{\bf \textendash\;\thepage\;\textendash}
 \rhead{\bf \@instructorname}
 \lfoot{}
@@ -798,7 +936,22 @@
 \RequirePackage{parskip}
 
 
-%======== Extra Useful Packages -- Remove if not needed =====================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%======== Extra Useful Packages -- Remove if not needed ============
 \RequirePackage{venndiagram}
 \RequirePackage{cancel}
 \RequirePackage{bigints}
