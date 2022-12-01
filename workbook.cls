@@ -989,6 +989,9 @@
 \DeclareMathOperator{\arccsc}{arccsc}
 \DeclareMathOperator{\charpoly}{charpoly}
 
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\mydiv}{div}
 
 \newcommand{\myskip}{\vspace{3em}}
 \newcommand{\mysskip}{\vspace{2em}}
@@ -1003,17 +1006,22 @@
 \newcommand{\U}{\mathcal{U}}
 
 \newcommand{\ddx}{\dfrac{\D}{\D x}}
+\newcommand{\ddt}{\dfrac{\D}{\D t}}
 \newcommand{\dint}{\displaystyle\int}
 \newcommand{\dx}{\D x}
 \newcommand{\dt}{\D t}
 \newcommand{\du}{\D u}
+\newcommand{\du}{\D v}
 \newcommand{\dz}{\D z}
 \newcommand{\dy}{\D y}
+\newcommand{\dA}{\D A}
+\newcommand{\dr}{\D r}
 \newcommand{\dtheta}{\D \theta}
 \newcommand{\eval}{\biggr|}
 \renewcommand{\bar}{\overline}
 \newcommand{\blankfill}{\xrfill[-1em]{0.5pt}}
 
+\newcommand{\ds}{\displaystyle}
 
 \DeclareMathOperator{\lcm}{lcm}
 
@@ -1023,4 +1031,10 @@
 \DeclareMathOperator\Dom{Dom}
 \DeclareMathOperator\Rng{Rng}
 \DeclareMathOperator\Codom{Codom}
+
+%Bold Vectors
+\RequirePackage{esvect,bm,bbold}
+\renewcommand{\vec}[1]{\vv{\bm{{#1}}}}
+
+\newcommand{\choicebox}{~\fbox{\begin{minipage}{0.5in}\hfill\vspace{1em}\end{minipage}}~}
 
