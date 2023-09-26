@@ -78,7 +78,7 @@
 \usepackage{anyfontsize}
 \RequirePackage{xhfill}
 
-\RequirePackage{booktabs, longtable}
+\RequirePackage{booktabs, longtable, array}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 %=========Fancy Footnote===============
@@ -151,19 +151,36 @@
 \RequirePackage{multicol,array}
 \usepackage{booktabs} % This makes tables look a bit more professional!
 
-\RequirePackage{enumitem}
-\setlist[enumerate]{leftmargin=*, align=left}
-% \setlist[enumerate,1]{label = \arabic*.,ref   = \arabic*}
+\RequirePackage[inline]{enumitem}
+\setlist[1]{labelindent=\parindent}
+\setlist[itemize]{leftmargin=*}
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{label=$\sqcdot$}
+
+\setlist[enumerate]{labelindent=\parindent, leftmargin=*}
 \setlist[enumerate,1]{label = (\alph*), ref = \thequestion.\alph*}
 \setlist[enumerate,2]{label = (\roman*), ref= \theenumii.\roman*}
-\setlist[itemize]{leftmargin=*, align=left}
-\setlist[itemize,2]{label=$\blacktriangleright$}
-\setlist[itemize,1]{label=$\bullet$}
 
-\RequirePackage{tasks}
-\settasks{label=(\roman*), item-indent  = 2em , label-width  = 2em , label-offset = 0pt}
+\setlist[enumerate]{itemjoin={{ \hspace{10em} }}}
 
 
+%%%%% Custom square bullet %%%
+\renewcommand{\em}{\maroon\bfseries}
+\DeclareFontFamily{U}{mathb}{}
+\DeclareFontShape{U}{mathb}{m}{n}{
+  <-5.5> mathb5
+  <5.5-6.5> mathb6
+  <6.5-7.5> mathb7
+  <7.5-8.5> mathb8
+  <8.5-9.5> mathb9
+  <9.5-11.5> mathb10
+  <11.5-> mathbb12
+}{}
+\DeclareRobustCommand{\sqcdot}{%
+  \mathbin{\text{\usefont{U}{mathb}{m}{n}\symbol{"0D}}}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -989,9 +1006,6 @@
 \DeclareMathOperator{\arccsc}{arccsc}
 \DeclareMathOperator{\charpoly}{charpoly}
 
-\DeclareMathOperator{\Proj}{Proj}
-\DeclareMathOperator{\curl}{curl}
-\DeclareMathOperator{\mydiv}{div}
 
 \newcommand{\myskip}{\vspace{3em}}
 \newcommand{\mysskip}{\vspace{2em}}
@@ -1006,22 +1020,17 @@
 \newcommand{\U}{\mathcal{U}}
 
 \newcommand{\ddx}{\dfrac{\D}{\D x}}
-\newcommand{\ddt}{\dfrac{\D}{\D t}}
 \newcommand{\dint}{\displaystyle\int}
 \newcommand{\dx}{\D x}
 \newcommand{\dt}{\D t}
 \newcommand{\du}{\D u}
-\newcommand{\du}{\D v}
 \newcommand{\dz}{\D z}
 \newcommand{\dy}{\D y}
-\newcommand{\dA}{\D A}
-\newcommand{\dr}{\D r}
 \newcommand{\dtheta}{\D \theta}
 \newcommand{\eval}{\biggr|}
 \renewcommand{\bar}{\overline}
 \newcommand{\blankfill}{\xrfill[-1em]{0.5pt}}
 
-\newcommand{\ds}{\displaystyle}
 
 \DeclareMathOperator{\lcm}{lcm}
 
@@ -1031,10 +1040,4 @@
 \DeclareMathOperator\Dom{Dom}
 \DeclareMathOperator\Rng{Rng}
 \DeclareMathOperator\Codom{Codom}
-
-%Bold Vectors
-\RequirePackage{esvect,bm,bbold}
-\renewcommand{\vec}[1]{\vv{\bm{{#1}}}}
-
-\newcommand{\choicebox}{~\fbox{\begin{minipage}{0.5in}\hfill\vspace{1em}\end{minipage}}~}
 
