@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{workbook}[2023/26/09 Math Workbook Template]
+\ProvidesClass{workbook}[2022/18/05 Math Workbook Template]
 
 \newif\ifworksheet
 \DeclareOption{worksheet}{\worksheettrue}
@@ -78,7 +78,7 @@
 \usepackage{anyfontsize}
 \RequirePackage{xhfill}
 
-\RequirePackage{booktabs, longtable, array}
+\RequirePackage{booktabs, longtable}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 %=========Fancy Footnote===============
@@ -151,36 +151,19 @@
 \RequirePackage{multicol,array}
 \usepackage{booktabs} % This makes tables look a bit more professional!
 
-\RequirePackage[inline]{enumitem}
-\setlist[1]{labelindent=\parindent}
-\setlist[itemize]{leftmargin=*}
-\setlist[itemize,1]{label=$\bullet$}
-\setlist[itemize,2]{label=$\sqcdot$}
-
-\setlist[enumerate]{labelindent=\parindent, leftmargin=*}
+\RequirePackage{enumitem}
+\setlist[enumerate]{leftmargin=*, align=left}
+% \setlist[enumerate,1]{label = \arabic*.,ref   = \arabic*}
 \setlist[enumerate,1]{label = (\alph*), ref = \thequestion.\alph*}
 \setlist[enumerate,2]{label = (\roman*), ref= \theenumii.\roman*}
+\setlist[itemize]{leftmargin=*, align=left}
+\setlist[itemize,2]{label=$\blacktriangleright$}
+\setlist[itemize,1]{label=$\bullet$}
 
-\setlist[enumerate]{itemjoin={{ \hspace{10em} }}}
+\RequirePackage{tasks}
+\settasks{label=(\roman*), item-indent  = 2em , label-width  = 2em , label-offset = 0pt}
 
 
-%%%%% Custom square bullet %%%
-\renewcommand{\em}{\maroon\bfseries}
-\DeclareFontFamily{U}{mathb}{}
-\DeclareFontShape{U}{mathb}{m}{n}{
-  <-5.5> mathb5
-  <5.5-6.5> mathb6
-  <6.5-7.5> mathb7
-  <7.5-8.5> mathb8
-  <8.5-9.5> mathb9
-  <9.5-11.5> mathb10
-  <11.5-> mathbb12
-}{}
-\DeclareRobustCommand{\sqcdot}{%
-  \mathbin{\text{\usefont{U}{mathb}{m}{n}\symbol{"0D}}}%
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
