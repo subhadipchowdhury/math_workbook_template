@@ -1,89 +1,162 @@
-\chapter{How to write in \LaTeX}
+\chapter{Macro Sampler}
 
-\section{Important Stuff}
+\section{Basic notation}
+The class provides the common number systems
+\[
+\N\subseteq \Z\subseteq \Q\subseteq \R\subseteq \C,
+\qquad
+\text{and a generic field } \F.
+\]
 
-This section contains some important information about writing in \LaTeX.
+It also includes several special alphabets and notational helpers:
+\[
+\U,
+\qquad
+\P(\N),
+\qquad
+\O(n^2).
+\]
 
-\subsection{Notes about Quotes and Internal references}
+The Lie-theoretic and affine-space symbols can be used separately as follows:
+\[
+\u,
+\qquad
+\A^2.
+\]
 
-When you quote something in \LaTeX, you have to do it like ``this.''
-If you do it like ''this,'' one of your quotation marks will be backwards.
+Write your name here:\blank\quad and a longer response here: \blankfill
 
-Another nice thing about using \LaTeX \ is that you can reference 
-equations and figures once you have labeled them. For example, \cref{fig:universe} is a figure. You can also 
-reference equations, sections, lemmas, theorems, etc. See the
-examples in \cref{sec:moremath}.
+\section{Delimiters, arrows, and elementary symbols}
+\[
+\la u,v \ra = u_1v_1+u_2v_2,
+\qquad
+\ceil*{\vf{7}} = 1,
+\qquad
+\floor*{\vf{7}} = 0.
+\]
 
+\[
+x_n \rh x,
+\qquad
+\mu_n \xrh \mu.
+\]
 
+\[
+A = \{x\in\R \suchthat x^2\le 1\}.
+\]
 
-\subsection{More Math Stuff}
-\label{sec:moremath}
+\[
+\phi(x)=x^2+\epsilon,
+\qquad
+\cis \theta = \cos\theta + i\sin\theta.
+\]
 
-Mathematical expressions, like $x^{2} + 3$, are easy to create in \LaTeX.
-It is also easy to have a formula written on a separate line, like \[x^{2} + 3 = 0.\]
+\[
+\grad f = \left(\frac{\d f}{\d x},\frac{\d f}{\d y}\right),
+\qquad
+\bar{A}=\left[-1,1\right].
+\]
 
+\section{Derivatives, differentials, and integrals}
+\[
+\ddx(x^3)=3x^2,
+\qquad
+\ddy(xy)=x,
+\qquad
+\ddt(t^4)=4t^3.
+\]
 
+\[
+\dint_0^1 x^2\dx,
+\qquad
+\doint_{|z|=1} \frac{1}{z}\dz.
+\]
 
-Numbered equations are easy too!
-\begin{equation}
-	\label{eq:simpleequation}
-	x^{5} - 9x^{4} = \sin 3.
-\end{equation}
-You can also refer to previous equations.
-The formula
-\begin{equation}
-	x = \frac{-b \pm \sqrt{b^{2} - 4ac}}{2a} \label{yourlabel}
-\end{equation}
-is the quadratic formula.
-You can use \cref{yourlabel} to solve quadratic equations.
+\[
+\diint_{[0,1]^2} xy\dA,
+\qquad
+\diiint_{[0,1]^3} xyz\dV.
+\]
 
-% Notice that you can also place equations and formulas between the commands 
-% ''\begin{equation}'' and ''\end{equation}''. No dollar signs are necessary in this case. 
+\[
+\dlim_{n\to\infty}\sum_{k=1}^{n}\vf{n} = 1,
+\qquad
+\dsum_{k=1}^{n} k = \frac{n(n+1)}{2}.
+\]
 
-% You can also create a label for the equation using the command ''\label''. You can 
-% refer back to the equation using the ''\ref'' command. Notice how LaTeX 
-% automatically takes care of the numbering. When you use the ''\ref'' command, you 
-% will need to run LaTeX on the source file twice. This is necessary so that LaTeX 
-% can keep track of the numbering. (Note that LaTeX will complain a little bit the first 
-% time you run the source file through. This is not serious.)
+\[
+\frac{\df}{\dx},
+\qquad
+\dr,\ \du,\ \dv,\ \dy,\ \ds,\ \dtheta,\ \dsigma.
+\]
 
-Here is a formula with some simple mathematical operations:
-\[5 \times 3 + 4 \div 2 = 2 \cdot 10 - 3 < 100.\]
-Another simple formula:
-\[x^{2} \geq 0.\]		% The command ''\geq'' is ''greater than or equal'' and 
-% ''\leq'' is ''less than or equal''.				
-This formula is true for $x \in \mathbb{R}$.	% The command ''\mathbb'' specifies 
-% a certain type of math font. There are 
-% also the ''\mathbf'' (bold) and the 
-% ''\mathcal'' (calligraphic) commands, 
-% among others, for specifying font styles 
-% in math formulas.
-One more simple formula:
-\[0 \neq \frac{\pi}{2}.\]
-Some simple trigonometry:
-\[\sin(2x) = 2 \sin x \cos x.\]
-Some simple logarithms:
-\[\log(x) = \frac{\ln x}{\ln 10}.\]
+\[
+\dydx,
+\qquad
+\dxdt,
+\qquad
+\dydt,
+\qquad
+\dzdt,
+\qquad
+\dPdt.
+\]
 
+\section{Algebra, transforms, and special symbols}
+\[
+\Zroot{2},
+\qquad
+\Qroot{5}.
+\]
 
-And now some Greek letters:
-\[\alpha + \beta = \gamma.\]
-A formula involving set notation:
-\[A \cup (B \cap C) = (A \cup B) \cap (A \cup C).\]
-The derivative:
-\[\lim_{h \rightarrow 0}\frac{f(x + h) - f(x)}{h} = f'(x).\]
-The Riemann sum
-\[\sum_{i = 1}^{n}f(x_{i})\Delta x\]
-approximates the integral
-\[\int_{a}^{b}f(x)\;dx.\]		% The characters ``\;'' just place some additional space 
-% in the formula.
-Finally, an infinite series:
-\[1, \frac{1}{2}, \frac{1}{4}, \ldots.\] %Also try \cdots
+\[
+\L{\sin t}=\frac{1}{s^2+1},
+\qquad
+\Linv{\frac{1}{s^2+1}}=\sin t.
+\]
 
+\[
+\frac{e^x-1}{x} \lhequal 1 \quad \text{as } x\to 0.
+\]
 
+\section{Operator macros}
+\[
+\tr(A),\quad \Int([0,1]),\quad \arcsec(2),\quad \arccot(1),\quad \arccsc(2),
+\quad \charpoly(A),\quad \lcm(12,18).
+\]
 
+\[
+\Dom(T),\quad \Rng(T),\quad \Codom(T),\quad \Col(A),\quad \Nul(A),\quad \rank(A).
+\]
 
+\[
+\spn\{v_1,v_2\},\quad \proj_W(v),\quad \Row(A).
+\]
 
-\section{Conclusion}
-``I always thought something was fundamentally wrong with the universe.'' \cite{adams1995hitchhiker}
+\[
+\erf(1),\quad \diag(1,2,3),\quad \Proj(S),\quad \curl\,\vec{F},\quad \mydiv\,\vec{F}.
+\]
 
+\section{Inline answer toggles and spacing}
+The inline solution macro can be used inside prose: the value of $\dint_0^1 x\dx$ is \tsol{$\frac12$}.
+
+\myskip
+This paragraph appears after \verb|\myskip|.
+\mysskip
+This paragraph appears after \verb|\mysskip|.
+\myssskip
+This paragraph appears after \verb|\myssskip|.
+
+\section{More vector notation}
+Let $\vec{v}=\langle 1,2\rangle$ and $\uvec{e}_1=\langle 1,0\rangle$.
+
+The reciprocal notation can also be combined with vector expressions:
+\[
+\vf{2}\vec{v}.
+\]
+
+For emphasis, one can also write the bold-affine symbol separately as
+\[
+\A,
+\]
+without mixing it with several other math alphabets in the same formula.

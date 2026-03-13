@@ -1,0 +1,54 @@
+\documentclass{workbook}
+
+\coursenumber{MATH 16300}
+\coursename{Sample Math Workbook Template}
+\coursequarter{Spring 2026}
+\instructorname{Subhadip Chowdhury}
+\coverimage{images/sampleimage.png}
+\department{Department of Mathematics}
+\departmentlogo{images/sampleimage.png}
+\addbibresource{references.bib}
+
+\solutiontrue
+\showplantrue
+
+\begin{document}
+\frontmatter
+\maketitle
+
+\PreTOCMatter{%
+  {\Huge\bfseries A Repository-Style Minimal Working Example}\par
+  \vspace{1em}
+  This page is inserted with \texttt{\string\PreTOCMatter}. It is useful for a short note,
+  dedication, or instructor-facing cover page before the table of contents.
+}
+
+\epigraph{Mathematics, rightly viewed, possesses not only truth, but supreme beauty.\\[0.5em]
+\hfill --- Bertrand Russell}
+\makeepigraph
+
+\tableofcontents
+
+\FrontMatter{How to Use This Template}
+This repository demonstrates workbook mode in \texttt{main.tex} and worksheet mode in
+\texttt{assignments/assignment1.tex} and \texttt{assignments/assignment2.tex}. The workbook includes
+chapter files from \texttt{chapters/} and appendix files from \texttt{appendices/}. It also cites a few
+sample references such as \cite{apostol-calculus,axler-linear} and uses a placeholder image stored at
+\texttt{images/sampleimage.png}.
+
+\include{chapters/introduction}
+
+
+\mainmatter
+
+\include{chapters/chapter1}
+\include{chapters/chapter2}
+
+\appendix
+\include{appendices/appendix1}
+\include{appendices/appendix2}
+
+\backmatter
+\makebibliography
+
+\end{document}

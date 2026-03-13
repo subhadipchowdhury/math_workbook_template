@@ -1,128 +1,65 @@
-\chapter{How to use this template}
+\chapter{Theorem-Like Environments and Workbook Features}
 
-\section{First Section}
+\section{A few sample statements}
 
-Uses kpfonts.
-
-\begin{defn}[Definition Title]{label_defn1}
-	A definition. The title is optional.
+\begin{defn}[Inner product space]{def:inner-product}
+An \emph{inner product space} is a vector space $V$ over $\R$ or $\C$ equipped with a function
+$\la \cdot,\cdot \ra : V\X V \to \R$ or $\C$ satisfying the usual axioms.
 \end{defn}
 
-
-
-\begin{exmpl}[Title]{label_exmpl}
-	\begin{itemize}
-		\item First example 
-		\begin{itemize}
-			\item  Note $1$
-			\item  Note $2$
-		\end{itemize}
-		\item Second example
-	\end{itemize}
-\end{exmpl}    
-
-
-
-Some other text.
-
-\begin{theo}[Theorem Title]{label_thm}
-	A Theorem that uses objects defined in \cref{label_defn1}. Title is optional. 
-	\[\dint_a^b u v' \dx = [u(x)v(x)] \eval_a^b - \dint_a^b u'(x) v(x) \dx\]
-\end{theo}
-
-
-\begin{prf}{label_thm}
-	Proof text ends in qed symbol. Must be supplied the label of the theorem.
-\end{prf}
-
-
-\begin{exercise}[Questions have their own counters.]\label{question_label}
-	\begin{enumerate}
-		\item Greek letters and uppercase math letters are always upright. Such as \label{step_a}
-		\begin{enumerate}
-			\item  $\alpha x^2 +\beta$ \label{substep_a_i} 
-			\item  $y =mx+ C \in \R$ 
-		\end{enumerate}
-		
-		\item Do the  following tasks after \ref{step_a}.
-  
-		\begin{enumerate*}
-			\item first do \ref{substep_a_i}.
-			\item ??    
-			\item Profit
-		\end{enumerate*}
-\end{enumerate}
-\end{exercise}
-
-\begin{solution}
-	Solution to the exercise. Uncomment the ``solutionfalse'' flag to make solutions invisible.
-\end{solution}
-
-
-\begin{note}[Fun Fact:]
-	This is a note with a custom title. Default is `Note:'.
-\end{note}
-
-
-
-\section{Second Section}
-
-Let's start with a picture that explains the main idea:
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/universe.jpg}
-    \caption{The Universe}
-    \label{fig:universe}
-\end{figure}
-
-
-\begin{axiom}{label_axiom}
-	This is an axiom.
+\begin{axiom}[Order axiom]{ax:order}
+For every $x \in \R$, exactly one of the following holds: $x<0$, $x=0$, or $x>0$.
 \end{axiom}
 
-\begin{prop}{label_proposition}
-	This is a proposition.
+\begin{theo}[Power rule]{thm:derivative-power}
+If $f(x)=x^n$ for $n\in\N$, then $\dfrac{\D}{\D x}f(x)=nx^{n-1}$.
+\end{theo}
+
+\begin{prf}{thm:derivative-power}
+One proves this using a binomial theorem identity. The displayed derivative
+notation in this class can be written as $\ddx(x^n)=nx^{n-1}$.
+\end{prf}
+
+\begin{prop}[A norm identity]{prop:norm}
+For vectors $\vec{u}, \vec{v}\in V$, the quantity $\tripnorm \vec{u}+\vec{v} \tripnorm$ depends continuously on $\vec{u}$ and $\vec{v}$.
 \end{prop}
 
-\begin{claim}{label_claim}
-	This is a claim.
+\begin{claim}[A simple estimate]{claim:estimate}
+If $|x|\le 1$, then $|x^2|\le 1$.
 \end{claim}
 
-\begin{digression}
-	A digression into tangentially related topics.
-\end{digression}
+\begin{exmpl}[A derivative computation]{ex:derivative}
+If $f(x)=x^3$, then $\dfdx=3x^2$ and $f(x)\eval_{0}^{1}=1$.
+\end{exmpl}
 
+\section{Exercises and solutions}
 
+\begin{exercise}[Warm-up]
+Compute $\dint_0^1 x^2\dx$ and compare your answer with the statement of \cref{thm:derivative-power}.
 
-\subsection{Case 1: First subsection}
-When  \cref{label_exmpl} is true.
-\begin{warning}[A Warning:] %default is Warning:
-	\lipsum[1][1-2]
-\end{warning}
+\begin{solution}
+We have $\dint_0^1 x^2\dx = \left.\frac{x^3}{3}\right\vert_{0}^{1}=\tsol{\frac13}$.
+\end{solution}
+\end{exercise}
 
-\subsection{Case 2: Second subsection}
-Do \cref{question_label} first.
+\begin{exercise}[Vectors]
+Let $\vec{R}(t)=\langle t,t^2,t^3\rangle$. Write down $\dvRdt$, $\dxdt$, $\dydt$, and $\dzdt$.
 
-Computer Code is written as {\tt Typewriter font}.
+\begin{solution}
+$\dvRdt=\langle 1,2t,3t^2\rangle$, while $\dxdt=1$, $\dydt=2t$, and $\dzdt=3t^2$.
+\end{solution}
+\end{exercise}
+
+\begin{proofskeleton}
+A typical proof skeleton might list a proof sketch or an algorithm.
+\end{proofskeleton}
 
 \begin{code}{Python}
-    def rk4(f,x0,t0,tmax,dt):
-        t = # build the time array
-        x = # initialize an empty array for the x values
-        x[0] = # build the initial condition
-        # On the next line: be careful about how far you're looping
-        for i in range( ??? ):
-        # The interesting part of the code goes here.
-        # Start from t[i] and x[i]. Then Define k1, k2, k3, k4 
-        # and use them to find x[i+1]
-        return t, x
-        
-    f = lambda t, x: # the definition of the function goes here
-    
-    x0 = # initial condition
-    t0 = 0
-    tmax = # your choice
-    dt = # pick something reasonable
-    t, x = rk4( ??? , ??? , ??? , ??? , ??? )
-    # plot t vs. x
+import math
+
+def midpoint_rule(f, a, b):
+    m = 0.5 * (a + b)
+    return (b - a) * f(m)
+
+print(midpoint_rule(lambda x: x**2, 0.0, 1.0))
 \end{code}
